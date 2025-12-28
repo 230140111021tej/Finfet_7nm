@@ -1,0 +1,54 @@
+# 7nm FinFET Inverter Characterization
+
+Welcome! This repo contains the methodology, netlist, and results for characterizing a 7nm FinFET CMOS inverter by sweeping the number of fins on PMOS and NMOS devices.
+
+## Project Overview
+
+- **Objective:** To analyze and compare how different configurations of PMOS (nfin_p) and NMOS (nfin_n) transistor fins affect key inverter performance metrics using ngspice simulation.
+- **Method:** For each configuration, the inverter netlist is updated to set the number of fins, then run in ngspice (open-source SPICE). Key performance results are extracted and tabulated for comparison.
+
+## Directory Overview
+
+- **results/**: Contains raw and processed simulation data tables.
+- **README.md**: This project overview and usage guide.
+
+## Key Simulation Parameters
+
+| Parameter | Meaning                                           |
+|-----------|--------------------------------------------------|
+| nfin_p    | Number of fins for the PMOS transistor           |
+| nfin_n    | Number of fins for the NMOS transistor           |
+| Id (A)    | Drain current                                    |
+| Power (W) | Operating (dynamic or static, see notes) power   |
+| tpd (ps)  | Propagation delay (picoseconds)                  |
+| Gain (Av) | Maximum voltage gain                             |
+| NML/NMH   | Noise margin low/high (V)                        |
+| gm (S)    | Maximum transconductance                         |
+| f (Hz)    | Maximum operating frequency                      |
+
+## How to Reproduce
+
+1. Clone this repo.
+2. Open `results/inverter_characterization_table` for run-by-run simulation data.
+3. (Optional) Run the provided netlist in ngspice with your own parameter sweeps – see comments in the file for guidance.
+
+## Results
+
+See the [`results/inverter_characterization_table`](./results/inverter_characterization_table) file for the full tabulated data from all 12 test configurations.
+
+---
+
+## Citation
+
+If you use this repo, please cite or reference as follows:
+
+```
+Author: 230140111021tej  
+Title: 7nm FinFET Inverter Characterization  
+Year: 2025
+```
+
+---
+
+**Questions?**  
+Open an issue or contact via GitHub!
