@@ -51,9 +51,33 @@ Design and characterization of a CMOS inverter using the ASAP 7nm FinFET process
 - **Result Visualization:** Plots of input vs. output, VTC curve, gain, ID, delay, and power.
 
 _Example Schematic, Waveforms & Results:_
-- ![Inverter Schematic](./Images/inverter_schematic.png)
-- ![VTC Curve](./Images/vtc_curve.png)
-- ![Gain](./Images/gain_plot.png)
+## Inverter Characterization
+
+#### Output Waveform
+![OP waveform of inverter](./Images/OP%20waveform%20of%20inverter.png)
+
+#### Drain Current
+![Drain current](./Images/Drain%20current.png)
+
+#### Voltage Transfer Characteristic (VTC)
+![Vctat](./Images/Vctat.png)
+
+#### Transconductance (gm)
+![Transconductance](./Images/Transconductance.png)
+
+#### Output Resistance
+![Output Resistance](./Images/Output%20Resistance.png)
+
+#### W/L Ratio Effect
+![wl ratio](./Images/wl%20ratio.png)
+
+#### ID-V Characteristics
+![id](./Images/id.png)
+
+## Bandgap Reference Results
+
+#### Reference Voltage vs Temperature
+![Vref](./Images/Vref.png)
 
 ---
 
