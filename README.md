@@ -1,10 +1,6 @@
 # FinFET 7nm Circuit Design & Characterization
 
-This repository documents the design, simulation, and analysis of advanced FinFET-based analog and digital circuits at 7nm, using the ASAP 7nm PDK, Xschem for schematic capture, and NGSPICE for circuit simulation.  
-Work inspired by the VSDIAT workshop and repositories:
-
-- [Bandgap Reference Circuit with SCMB](https://github.com/RSMadhuri66/Bandgap-Reference-Circuit-with-SCMB-with-ASAP-7nm-PDK-)
-- [7nm FinFET Workshop VSDIAT](https://github.com/Shank012/7nm-FinFET-Workshop-VSDIAT)
+This repository presents my work on designing, simulating, and characterizing FinFET-based analog and digital circuits at the advanced 7nm technology node. The project is completed as part of the VSD 7nm FinFET Workshop, utilizing the ASAP 7nm PDK and tools for schematic entry, simulation, and analysis.
 
 ---
 
@@ -23,103 +19,73 @@ Work inspired by the VSDIAT workshop and repositories:
 
 ### What is FinFET?
 
-A FinFET is a 3D transistor widely used in advanced CMOS nodes (≤22nm) for superior gate control, reduced leakage, and improved scaling.  
-Unlike planar MOSFETs, the gate wraps around a vertical "fin" structure, drastically reducing short-channel effects.
+A FinFET (Fin Field-Effect Transistor) is a type of non-planar, multi-gate transistor, widely adopted for sub-22nm CMOS technology due to its superior control over short-channel effects, reduced leakage, and enhanced performance. FinFET replaces the planar "MOSFET" channel with a thin, vertical fin, allowing the gate to wrap around the channel on three sides, resulting in improved electrostatic control and better device characteristics.
 
-![FinFET Diagram](./Images/finfet_diagram.png)
+<details>
+  <summary>Comparison Table</summary>
 
-| Feature              | Planar MOSFET     | FinFET (3D MOSFET)         |
-|----------------------|-------------------|----------------------------|
-| Structure            | Flat channel      | Vertical fin-shaped channel|
-| Gate Control         | Gate on 1 side    | Gate on 3 sides            |
-| Leakage Current      | High <32nm        | Very low                   |
-| Performance          | Limited scaling   | Higher speed, better Ion   |
-| Power Consumption    | Higher            | Lower                      |
+| **Feature**           | **Planar MOSFET** | **FinFET** (3D MOSFET)             |
+|-----------------------|-------------------|-------------------------------------|
+| Structure             | Flat channel      | Vertical fin-shaped channel         |
+| Gate Control          | Gate on 1 side    | Gate on 3 sides                     |
+| Leakage Current       | High at <32nm     | Very low                            |
+| Performance           | Limited scaling   | Higher speed, better Ion            |
+| Power Consumption     | Higher            | Lower                               |
+| Technology Node       | ≥45nm              | ≤22nm (industry standard)           |
+| SCE Resistance        | Poor              | Excellent                           |
 
-FinFETs are the backbone for 7nm nodes and below in modern SoCs, CPUs, GPUs, and analog ICs.
+</details>
+
+FinFETs are now ubiquitous in 7nm technology and below, powering most modern SoCs, CPUs, GPUs, and RFICs.
 
 ---
 
 ## Lab 1: FinFET Inverter Design
 
-### Schematic & Setup
+Design and characterization of a CMOS inverter using ASAP 7nm FinFET process.
 
-Design and simulate a CMOS inverter using ASAP 7nm FinFET models.  
-Schematic created in Xschem:
+### Key Steps
+- **Schematic Design:** Using Xschem/other EDA tool.
+- **SPICE Simulation:** Extraction of VTC, delay, power consumption, noise margin, transconductance, and other key metrics.
+- **W/L Ratio Variation:** Explore the effect of transistor sizing on performance.
+- **Result Visualization:** Plots of input vs. output, VTC curve, gain, ID, delay, and power.
 
-![Inverter Schematic](./Images/inverter_schematic.png)
-
-### Inverter Analysis
-
-- **Input & Output Waveform:** SPICE simulation of signal transmission and logic levels.
-- **Voltage Transfer Characteristic (VTC):** Measurement of switching thresholds, gain, noise margin.
-- **W/L Ratio Variation:** Evaluation of electrical characteristics for different transistor size ratios.
-
-#### Example Waveforms
-
-![Inverter Waveform](./Images/inverter_waveform.png)
-![VTC Curve](./Images/vtc_curve.png)
-
-### Measurement Table
-
-| Parameter      | Value      |
-|----------------|-----------|
-| Vth            | 0.32 V    |
-| Max Gain       | 4.5       |
-| Noise Margin   | 0.12 V    |
-| Power          | 0.62 mW   |
-| Frequency      | 10 MHz    |
-
-#### W/L Ratio Study
-
-![W/L Results](./Images/wl_study.png)
+_Example Schematic, Waveforms & Results:_
+- [Add your inverter schematic here]
+- [Add plots for VTC, gain, ID, etc.]
 
 ---
 
 ## Lab 2: Bandgap Reference Circuit Design
 
+Designing a temperature-independent bandgap reference voltage circuit utilizing self-biased current mirror (SBCM) architecture with ASAP 7nm PDK.
+
 ### Overview
 
-The Bandgap Reference generates a temperature-independent voltage, essential for analog/reference applications.  
-Uses a Self-Biased Current Mirror (SBCM) approach for improved reliability.
+A bandgap reference circuit provides a highly stable voltage source, insensitive to supply voltage, temperature, and process variations. Integration of a Self-Biased Current Mirror (SBCM) enhances startup reliability, power efficiency, and process robustness.
 
-#### Schematic
+#### Key Steps
+- **Circuit Schematic:** Implement PTAT and CTAT branches.
+- **Biasing:** Generation of stable reference current and voltage.
+- **Simulation:** DC and temperature sweeps to ensure performance from -45°C to 125°C.
+- **Results:** Vref stability, line regulation, transient response, startup time.
 
-![Bandgap Reference Schematic](./Images/bandgap_sch.png)
-
-### Simulation Results
-
-- **Vref vs. Temperature Sweep:**
-  
-  ![Vref vs. Temperature](./Images/vref_vs_temp.png)
-
-- **Line Regulation Analysis:**
-  
-  ![Line Regulation](./Images/line_regulation.png)
-
-- **Transient/Startup Time:**
-  
-  ![Startup Time](./Images/startup_time.png)
-
-#### Measurement Table
-
-| Temperature (°C) | Vref (V) |
-|------------------|----------|
-| -45              | 1.61     |
-| 0                | 1.60     |
-| 25               | 1.60     |
-| 85               | 1.62     |
-| 125              | 1.62     |
+_Example Schematic & Plots:_
+- [Add your bandgap schematic here]
+- [Add Vref vs. temperature plot]
+- [Add startup/line regulation plots]
 
 ---
 
 ## Results
 
-All simulation results, measurement tables, and images are available in:
+All simulation results, schematics, and plots are located in:
 
-- [`/Images`](./Images) — schematics and waveforms
-- [`/results`](./results) — measurement data and analysis
-- [`/spice_code`](./spice_code) — simulation files
+- [`/Images`](./Images) — Circuit diagrams and waveforms
+- [`/results`](./results) — Measurement tables and plots
+- [`/spice_code`](./spice_code) — SPICE simulation files
+
+Update with specific data, measurement tables, and images as you progress.
 
 ---
 
@@ -129,18 +95,18 @@ Special thanks to:
 
 - [Kunal Ghosh](https://github.com/kunalg123) (VSD Co-Founder)
 - [Soundarya Madhuri Royyuru](https://github.com/RSMadhuri66/Bandgap-Reference-Circuit-with-SCMB-with-ASAP-7nm-PDK-)
-- VSDIAT instructors and assistants
+- Instructors & community mentors from VSDIAT.
 
 ---
 
 ## References
 
-- [Bandgap Reference Circuit with SCMB](https://github.com/RSMadhuri66/Bandgap-Reference-Circuit-with-SCMB-with-ASAP-7nm-PDK-)
-- [7nm FinFET Workshop VSDIAT](https://github.com/Shank012/7nm-FinFET-Workshop-VSDIAT)
-- [ASAP 7nm PDK Xschem Repo](https://github.com/AsahiroKenpachi/asap_7nm_Xschem)
-- IIT Labs: [FinFET Theory](https://vlsi-iitg.vlabs.ac.in/CMOS_theory.html)
-- [NGSPICE Manual](https://ngspice.sourceforge.io/docs/ngspice-manual.pdf)
+- [Bandgap Circuit VSDIAT](https://github.com/vsdip/vsdopen2021_bgr/tree/main)
+- [ASAP 7nm Xschem Reference](https://github.com/AsahiroKenpachi/asap_7nm_Xschem)
+- [FinFET Theory - IIT Labs](https://vlsi-iitg.vlabs.ac.in/CMOS_theory.html)
+- [NGSPICE Tutorial](https://ngspice.sourceforge.io/docs/ngspice-manual.pdf)
+- Further reading in design and characterization papers linked in reference repos.
 
 ---
 
-_If you use this repository, please star/fork and mention in your projects!_
+_If you use this repository, please star/fork and acknowledge accordingly!_
