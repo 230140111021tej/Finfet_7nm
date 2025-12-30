@@ -96,9 +96,8 @@ A bandgap reference circuit provides a highly stable voltage source, insensitive
 - **Results:** Vref stability, line regulation, transient response, startup time.
 
 _Example Schematic & Plots:_
-- ![Bandgap Schematic](./Images/bandgap_sch.png)
-- ![Vref vs. Temperature](./Images/vref_vs_temp.png)
-- ![Startup Time](./Images/startup_time.png)
+- ![Bandgap_Xschem Schematic](./Images/bandgap_sch.png)
+
 
 ---
 
