@@ -31,7 +31,7 @@ A FinFET (Fin Field-Effect Transistor) is a type of non-planar, multi-gate trans
 | Leakage Current       | High at <32nm     | Very low                            |
 | Performance           | Limited scaling   | Higher speed, better Ion            |
 | Power Consumption     | Higher            | Lower                               |
-| Technology Node       | ≥45nm              | ≤22nm (industry standard)           |
+| Technology Node       | ≥45nm             | ≤22nm (industry standard)           |
 | SCE Resistance        | Poor              | Excellent                           |
 
 </details>
@@ -42,7 +42,7 @@ FinFETs are now ubiquitous in 7nm technology and below, powering most modern SoC
 
 ## Lab 1: FinFET Inverter Design
 
-Design and characterization of a CMOS inverter using ASAP 7nm FinFET process.
+Design and characterization of a CMOS inverter using the ASAP 7nm FinFET process.
 
 ### Key Steps
 - **Schematic Design:** Using Xschem/other EDA tool.
@@ -51,8 +51,9 @@ Design and characterization of a CMOS inverter using ASAP 7nm FinFET process.
 - **Result Visualization:** Plots of input vs. output, VTC curve, gain, ID, delay, and power.
 
 _Example Schematic, Waveforms & Results:_
-- [Add your inverter schematic here]
-- [Add plots for VTC, gain, ID, etc.]
+- ![Inverter Schematic](./Images/inverter_schematic.png)
+- ![VTC Curve](./Images/vtc_curve.png)
+- ![Gain](./Images/gain_plot.png)
 
 ---
 
@@ -71,9 +72,9 @@ A bandgap reference circuit provides a highly stable voltage source, insensitive
 - **Results:** Vref stability, line regulation, transient response, startup time.
 
 _Example Schematic & Plots:_
-- [Add your bandgap schematic here]
-- [Add Vref vs. temperature plot]
-- [Add startup/line regulation plots]
+- ![Bandgap Schematic](./Images/bandgap_sch.png)
+- ![Vref vs. Temperature](./Images/vref_vs_temp.png)
+- ![Startup Time](./Images/startup_time.png)
 
 ---
 
@@ -85,7 +86,36 @@ All simulation results, schematics, and plots are located in:
 - [`/results`](./results) — Measurement tables and plots
 - [`/spice_code`](./spice_code) — SPICE simulation files
 
-Update with specific data, measurement tables, and images as you progress.
+### Bandgap Reference Characterization Table
+
+The following table summarizes the key performance parameters of the bandgap reference circuit across different supply voltages and temperatures, including the output reference voltage (Vref), line regulation, and startup times.
+
+| S.No | VDD (V) | Temp (°C) | Vref (V) | Line Reg. (mV/V) | Startup Time (ns) |
+|------|---------|-----------|----------|------------------|-------------------|
+| 1    | 0.80    | 27        | 0.6760   | 845.0            | 3.48              |
+| 2    | 0.90    | 27        | 0.7770   | 863.3            | 4.2               |
+| 3    | 1.00    | 27        | 0.8779   | 877.9            | 4.5               |
+| 4    | 1.00    | -40       | 0.8281   | 828.0            | 66.89             |
+| 5    | 1.00    | 125       | 0.9220   | 922.0            | 1.03              |
+
+### Final Inverter Characterization Table
+
+This table presents key electrical characteristics of the inverter by sweeping the number of fins for PMOS (nfin_p) and NMOS (nfin_n) devices and measuring current (Id), power, delay (tpd), gain, noise margins (NML, NMH), transconductance (gm), and frequency of operation.
+
+| Test # | nfin_p | nfin_n | Id (A)      | Power (W)  | tpd (ps) | Gain (Av) | NML (V) | NMH (V)  | gm (S)    | f (Hz)      |
+|--------|--------|--------|-------------|------------|----------|-----------|---------|----------|-----------|-------------|
+|   1    |   4    |   4    | -6.33E-05   | 8.50E-06   |   25.3   |   6.43    | 0.0444  | -0.0320  | 3.53E-04  | 2.25E+10    |
+|   2    |   9    |   9    | -1.42E-04   | 1.91E-05   |   25.3   |   6.43    | 0.0444  | -0.0320  | 7.94E-04  | 2.25E+10    |
+|   3    |  14    |  14    | -2.22E-04   | 2.97E-05   |   25.3   |   6.43    | 0.0444  | -0.0320  | 1.24E-03  | 2.25E+10    |
+|   4    |  17    |  17    | -2.69E-04   | 3.61E-05   |   25.3   |   6.43    | 0.0444  | -0.0320  | 1.50E-03  | 2.25E+10    |
+|   5    |   4    |   9    | -8.42E-05   | 1.23E-05   |   24.85  |   6.70    | 0.0265  | -0.0138  | 4.29E-04  | 2.27E+10    |
+|   6    |   9    |  14    | -1.78E-04   | 2.37E-05   |   25.02  |   6.52    | 0.0346  | -0.0127  | 8.95E-04  | 2.26E+10    |
+|   7    |  14    |  17    | -2.50E-04   | 3.28E-05   |   25.16  |   6.45    | 0.0404  | -0.0124  | 1.31E-03  | 2.25E+10    |
+|   8    |  17    |   4    | -7.40E-05   | 1.52E-05   |   26.22  |   6.87    | 0.0611  | -0.0267  | 7.99E-04  | 2.16E+10    |
+|   9    |   4    |  14    | -8.70E-05   | 1.45E-05   |   24.63  |   7.04    | 0.0175  | -0.0124  | 4.59E-04  | 2.28E+10    |
+|  10    |   9    |  17    | -1.85E-04   | 2.58E-05   |   24.93  |   6.60    | 0.0307  | -0.0120  | 9.34E-04  | 2.27E+10    |
+|  11    |  17    |   9    | -7.36E-05   | 1.42E-05   |   26.08  |   6.78    | 0.0613  | -0.0184  | 7.32E-04  | 2.16E+10    |
+|  12    |  14    |   4    | -1.60E-04   | 2.53E-05   |   25.68  |   6.53    | 0.0556  | -0.0422  | 1.19E-03  | 2.20E+10    |
 
 ---
 
