@@ -1,4 +1,4 @@
-** sch_path: /workspaces/vsd-7nm/asap_7nm_Xschem/bandgap_ref.sch
+** sch_path: /workspaces/vsd-7nm/Bandgap-Reference-Circuit-with-SCMB-with-ASAP-7nm-PDK-/bandgap_ref.sch
 **.subckt bandgap_ref
 Xnfet1 net3 net1 net7 net10 asap_7nm_nfet l=7e-009 nfin=14
 Xnfet2 net2 net1 net9 net11 asap_7nm_nfet l=7e-009 nfin=14
@@ -18,10 +18,11 @@ Xnfet9 net8 net8 GND GND asap_7nm_nfet l=7e-009 nfin=14
 R1 net9 net8 33k ac=1k m=1
 R2 Vref Vctat 50k ac=1k m=1
 Xnfet10 Vctat Vctat GND net21 asap_7nm_nfet l=7e-009 nfin=14
-V2 vdd GND 1.75
+Runiq net1 net2 866
+V2 vdd GND 0.9
 **** begin user architecture code
 
-.dc temp -45 125 5
+.dc temp 27 37 1
 .control
 run
 plot v(Vref)
