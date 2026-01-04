@@ -97,19 +97,11 @@ Key performance metrics, such as gain, delay, and current, are all derived from 
 
 ---
 
-Drain current (Id) is the main indicator of how much charge the device can drive/sink, directly related to switching speed and logic strength. Higher Id generally means faster and stronger switching, but also more dynamic power use.
-
----
-
 ### Drain Current
 
 *This plot shows the inverter drain current during switching cycles, which directly indicates its drive capability, dynamic power usage, and overall logic strength.*
 
 ![Drain Current](./Images/Drain%20current.png)
-
----
-
-Output resistance determines how much the output voltage will droop or rise as external load changes. Lower resistance is preferable for strong logic levels and high fan-out circuits.
 
 ---
 
