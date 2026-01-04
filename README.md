@@ -143,6 +143,17 @@ Switching threshold marks the precise point of state-flip for digital logic, whe
 
 ---
 
+---
+
+#### Key Takeaways from CMOS Inverter Characterization:
+
+- Increasing fin count (nfin) significantly increases drain current (Id) and transconductance (gm), improving switching speed and drive capability.
+- Output resistance remains low, supporting effective logic level restoration and robust gate driving.
+- The inverter demonstrates well-centered switching threshold and strong noise margins, indicating excellent signal integrity.
+- High gain and steep VTC transitions confirm sharp digital switching, desirable for low-power, high-performance logic.
+
+---
+
 ## Design of BandGap Reference Circuit with Xschem
 
 ---
@@ -192,6 +203,16 @@ PTAT (Proportional to Absolute Temperature) and CTAT (Complementary to Absolute 
 
 **Table Interpretation:**  
 These tables compile the performance extracted from simulation, highlighting how device geometry (number of fins for NMOS/PMOS) and circuit topology affect current, gain, speed, noise margins, and reference voltage flatness. High speed, robust noise margins, and small change in Vref with temperature/supply are key hallmarks of well-designed nanometer circuits.
+
+---
+
+#### Key Observations from Bandgap Reference Design:
+
+- The bandgap reference maintains a nearly constant output (Vref) across the temperature range, confirming excellent PTAT/CTAT balance.
+- Architecture demonstrates rapid startup and strong line regulation, suitable for precision analog and digital supply/reference generation.
+- Both PTAT and CTAT branches behave as expected in simulation, emulating classic bandgap principles in a 7nm FinFET implementation.
+
+---
 
 ## Results
 
