@@ -103,7 +103,7 @@ Drain current (Id) is the main indicator of how much charge the device can drive
 
 ### Drain Current
 
-*Shows inverter drain current characteristics during switching:*
+*This plot shows the inverter drain current during switching cycles, which directly indicates its drive capability, dynamic power usage, and overall logic strength.*
 
 ![Drain Current](./Images/Drain%20current.png)
 
@@ -115,7 +115,7 @@ Output resistance determines how much the output voltage will droop or rise as e
 
 ### Output Resistance
 
-*Calculated inverter output resistance:*
+*This simulation result demonstrates the inverter’s small-signal output resistance, crucial for strong logic swing especially when driving multiple gates.*
 
 ![Output Resistance](./Images/Output%20Resistance.png)
 
@@ -182,7 +182,7 @@ A bandgap reference circuit produces a voltage that remains steady across supply
 
 ### Vref vs Temperature
 
-*Simulation showing reference voltage stability across temperature sweep:*
+*This plot illustrates how well the designed bandgap reference maintains a stable voltage output (Vref) over changing temperatures, highlighting the effectiveness of PTAT/CTAT compensation.*
 
 ![Vref vs Temperature](./Images/Vref.png)
 
