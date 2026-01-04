@@ -1,5 +1,7 @@
 # FinFET 7nm Circuit Design & Characterization
 
+![FinFET Device Structure](./Images/finfet.png)
+
 This repository presents my work on designing, simulating, and characterizing FinFET-based analog and digital circuits at the advanced 7nm technology node. The project is completed as part of the VSD 7nm FinFET Workshop, utilizing the ASAP 7nm PDK and tools for schematic entry, simulation, and analysis.
 
 ---
@@ -7,8 +9,9 @@ This repository presents my work on designing, simulating, and characterizing Fi
 ## Table of Contents
 
 - [Introduction](#introduction)
-- [Lab 1: FinFET Inverter Design](#lab-1-finfet-inverter-design)
-- [Lab 2: Bandgap Reference Circuit Design](#lab-2-bandgap-reference-circuit-design)
+- [Characterization of CMOS VTC](#characterization-of-cmos-vtc)
+- [CMOS Inverter_vtc Characteristics](#cmos-inverter_vtc-characteristics)
+- [Design of BandGap Reference Circuit with Xschem](#design-of-bandgap-reference-circuit-with-xschem)
 - [Results](#results)
 - [Acknowledgements](#acknowledgements)
 - [References](#references)
@@ -24,15 +27,15 @@ A FinFET (Fin Field-Effect Transistor) is a type of non-planar, multi-gate trans
 <details>
   <summary>Comparison Table</summary>
 
-| **Feature**           | **Planar MOSFET** | **FinFET** (3D MOSFET)             |
-|-----------------------|-------------------|-------------------------------------|
-| Structure             | Flat channel      | Vertical fin-shaped channel         |
-| Gate Control          | Gate on 1 side    | Gate on 3 sides                     |
-| Leakage Current       | High at <32nm     | Very low                            |
-| Performance           | Limited scaling   | Higher speed, better Ion            |
-| Power Consumption     | Higher            | Lower                               |
-| Technology Node       | ≥45nm             | ≤22nm (industry standard)           |
-| SCE Resistance        | Poor              | Excellent                           |
+| **Feature**           | **Planar MOSFET** | **FinFET (3D MOSFET)**        |
+|-----------------------|-------------------|-------------------------------|
+| Structure             | Flat channel      | Vertical fin-shaped channel   |
+| Gate Control          | Gate on 1 side    | Gate on 3 sides               |
+| Leakage Current       | High at <32nm     | Very low                      |
+| Performance           | Limited scaling   | Higher speed, better Ion      |
+| Power Consumption     | Higher            | Lower                         |
+| Technology Node       | ≥45nm             | ≤22nm                         |
+| SCE Resistance        | Poor              | Excellent                     |
 
 </details>
 
@@ -40,64 +43,106 @@ FinFETs are now ubiquitous in 7nm technology and below, powering most modern SoC
 
 ---
 
-## Lab 1: FinFET Inverter Design
+## Characterization of CMOS VTC
 
-Design and characterization of a CMOS inverter using the ASAP 7nm FinFET process.
+### NFET Schematic
 
-### Key Steps
-- **Schematic Design:** Using Xschem/other EDA tool.
-- **SPICE Simulation:** Extraction of VTC, delay, power consumption, noise margin, transconductance, and other key metrics.
-- **W/L Ratio Variation:** Explore the effect of transistor sizing on performance.
-- **Result Visualization:** Plots of input vs. output, VTC curve, gain, ID, delay, and power.
+*NMOS device schematic created in Xschem for Id/Vd simulations:*
 
-_Example Schematic, Waveforms & Results:_
-## Inverter Characterization
-
-#### Output Waveform
-![OP waveform of inverter](./Images/OP%20waveform%20of%20inverter.png)
-
-#### Drain Current
-![Drain current](./Images/Drain%20current.png)
-
-#### Voltage Transfer Characteristic (VTC)
-![Vctat](./Images/Vctat.png)
-
-#### Transconductance (gm)
-![Transconductance](./Images/Transconductance.png)
-
-#### Output Resistance
-![Output Resistance](./Images/Output%20Resistance.png)
-
-#### W/L Ratio Effect
-![wl ratio](./Images/wl%20ratio.png)
-
-#### ID-V Characteristics
-![id](./Images/id.png)
-
-## Bandgap Reference Results
-
-#### Reference Voltage vs Temperature
-![Vref](./Images/Vref.png)
+![NFET Schematic](./Images/nfetsch.png)
 
 ---
 
-## Lab 2: Bandgap Reference Circuit Design
+### NFET Id-Vd Characteristics
 
-Designing a temperature-independent bandgap reference voltage circuit utilizing self-biased current mirror (SBCM) architecture with ASAP 7nm PDK.
+*Simulation setup and extracted transfer characteristics for NMOS:*
 
-### Overview
+![NFET Id vs Vd Simulation Setup](./Images/nfet_id_vs_vd_characteristics.png)
+![Id vs Vd Plot](./Images/id_vs_vd.png)
 
-A bandgap reference circuit provides a highly stable voltage source, insensitive to supply voltage, temperature, and process variations. Integration of a Self-Biased Current Mirror (SBCM) enhances startup reliability, power efficiency, and process robustness.
+---
 
-#### Key Steps
-- **Circuit Schematic:** Implement PTAT and CTAT branches.
-- **Biasing:** Generation of stable reference current and voltage.
-- **Simulation:** DC and temperature sweeps to ensure performance from -45°C to 125°C.
-- **Results:** Vref stability, line regulation, transient response, startup time.
+## CMOS Inverter_vtc Characteristics
 
-_Example Schematic & Plots:_
-- ![Xschem Schematic](.Images/Xschem%20schematic.png)
+### Output Waveform (Inverter)
 
+*Transient simulation showing inverter's output switching behavior:*
+
+![Output Waveform of Inverter](./Images/OP%20waveform%20of%20inverter.png)
+
+---
+
+### Drain Current
+
+*Shows inverter drain current characteristics during switching:*
+
+![Drain Current](./Images/Drain%20current.png)
+
+---
+
+### Output Resistance
+
+*Calculated inverter output resistance:*
+
+![Output Resistance](./Images/Output%20Resistance.png)
+
+---
+
+### Transconductance
+
+*Inverter transconductance result (gm versus input):*
+
+![Transconductance](./Images/Transconductance.png)
+
+---
+
+### Inverter Schematic
+
+*CMOS inverter schematic captured in Xschem:*
+
+![Inverter Schematic](./Images/invertersch.png)
+
+---
+
+### Switching Threshold Voltage
+
+*Waveform used to determine the inverter’s V_th and noise margins:*
+
+![Switching Threshold Voltage](./Images/switching_threshold_voltage.png)
+
+---
+
+## Design of BandGap Reference Circuit with Xschem
+
+### BandGap Reference (Architecture Reference)
+
+*Reference block diagram for bandgap circuit using SBCM:*
+
+![Bandgap Reference Block](./Images/reference.png)
+
+---
+
+### Xschem Bandgap Schematic
+
+*Bandgap reference full schematic as drawn in Xschem:*
+
+![Bandgap Xschem Schematic](./Images/Xschem%20schematic.png)
+
+---
+
+### Vref vs Temperature
+
+*Simulation showing reference voltage stability across temperature sweep:*
+
+![Vref vs Temperature](./Images/Vref.png)
+
+---
+
+### PTAT/CTAT Voltages
+
+*Simulated PTAT/CTAT voltage behavior in the bandgap circuit:*
+
+![Vctat](./Images/Vctat.png)
 
 ---
 
@@ -111,8 +156,6 @@ All simulation results, schematics, and plots are located in:
 
 ### Bandgap Reference Characterization Table
 
-The following table summarizes the key performance parameters of the bandgap reference circuit across different supply voltages and temperatures, including the output reference voltage (Vref), line regulation, and startup times.
-
 | S.No | VDD (V) | Temp (°C) | Vref (V) | Line Reg. (mV/V) | Startup Time (ns) |
 |------|---------|-----------|----------|------------------|-------------------|
 | 1    | 0.80    | 27        | 0.6760   | 845.0            | 3.48              |
@@ -123,22 +166,12 @@ The following table summarizes the key performance parameters of the bandgap ref
 
 ### Final Inverter Characterization Table
 
-This table presents key electrical characteristics of the inverter by sweeping the number of fins for PMOS (nfin_p) and NMOS (nfin_n) devices and measuring current (Id), power, delay (tpd), gain, noise margins (NML, NMH), transconductance (gm), and frequency of operation.
-
 | Test # | nfin_p | nfin_n | Id (A)      | Power (W)  | tpd (ps) | Gain (Av) | NML (V) | NMH (V)  | gm (S)    | f (Hz)      |
 |--------|--------|--------|-------------|------------|----------|-----------|---------|----------|-----------|-------------|
 |   1    |   4    |   4    | -6.33E-05   | 8.50E-06   |   25.3   |   6.43    | 0.0444  | -0.0320  | 3.53E-04  | 2.25E+10    |
 |   2    |   9    |   9    | -1.42E-04   | 1.91E-05   |   25.3   |   6.43    | 0.0444  | -0.0320  | 7.94E-04  | 2.25E+10    |
 |   3    |  14    |  14    | -2.22E-04   | 2.97E-05   |   25.3   |   6.43    | 0.0444  | -0.0320  | 1.24E-03  | 2.25E+10    |
-|   4    |  17    |  17    | -2.69E-04   | 3.61E-05   |   25.3   |   6.43    | 0.0444  | -0.0320  | 1.50E-03  | 2.25E+10    |
-|   5    |   4    |   9    | -8.42E-05   | 1.23E-05   |   24.85  |   6.70    | 0.0265  | -0.0138  | 4.29E-04  | 2.27E+10    |
-|   6    |   9    |  14    | -1.78E-04   | 2.37E-05   |   25.02  |   6.52    | 0.0346  | -0.0127  | 8.95E-04  | 2.26E+10    |
-|   7    |  14    |  17    | -2.50E-04   | 3.28E-05   |   25.16  |   6.45    | 0.0404  | -0.0124  | 1.31E-03  | 2.25E+10    |
-|   8    |  17    |   4    | -7.40E-05   | 1.52E-05   |   26.22  |   6.87    | 0.0611  | -0.0267  | 7.99E-04  | 2.16E+10    |
-|   9    |   4    |  14    | -8.70E-05   | 1.45E-05   |   24.63  |   7.04    | 0.0175  | -0.0124  | 4.59E-04  | 2.28E+10    |
-|  10    |   9    |  17    | -1.85E-04   | 2.58E-05   |   24.93  |   6.60    | 0.0307  | -0.0120  | 9.34E-04  | 2.27E+10    |
-|  11    |  17    |   9    | -7.36E-05   | 1.42E-05   |   26.08  |   6.78    | 0.0613  | -0.0184  | 7.32E-04  | 2.16E+10    |
-|  12    |  14    |   4    | -1.60E-04   | 2.53E-05   |   25.68  |   6.53    | 0.0556  | -0.0422  | 1.19E-03  | 2.20E+10    |
+|  ...   |  ...   |  ...   | ...         | ...        | ...      | ...       | ...     | ...      | ...       | ...         |
 
 ---
 
