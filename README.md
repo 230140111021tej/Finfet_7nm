@@ -43,6 +43,14 @@ FinFETs are now ubiquitous in 7nm technology and below, powering most modern SoC
 
 ---
 
+## Theoretical Background: Device Physics, Circuits, and Analysis
+
+Understanding the characteristics and performance of FinFET devices and their circuits is crucial as technology continues to scale below 22nm. Planar CMOS faces significant short-channel effects, leakage, and performance bottlenecks at these nodes. FinFETs are engineered to mitigate these problems with 3D channel geometry, increased gate control, and reduced variability. This not only allows for further scaling but also maintains robust digital and analog performance in advanced nodes like 7nm.
+
+The following sections explore the theory and practical implications behind every simulation and measurement. Each dataset, plot, and table is accompanied by a concise explanation so that new learners and experienced engineers alike can appreciate both the *what* and the *why* of nanoscale transistor characterization and bandgap reference design.
+
+---
+
 ## Characterization of CMOS VTC
 
 ### NFET Schematic
@@ -52,6 +60,13 @@ FinFETs are now ubiquitous in 7nm technology and below, powering most modern SoC
 ![NFET Schematic](./Images/nfetsch.png)
 
 ---
+#### About NFET Id–Vd and Id–Vgs Curves
+
+MOSFET drain current characteristics underpin all circuit design.  
+- **Id vs. Vgs (Transfer):** Characterizes threshold voltage, subthreshold swing, and switching efficiency—key for low-voltage digital logic.  
+- **Id vs. Vd (Output):** Reveals linear (triode) and saturation operating regions, core for analog gain/switch and digital speed, and exhibits short-channel effects more strongly in advanced FinFETs.
+
+---
 
 ### NFET Id-Vd Characteristics
 
@@ -59,6 +74,16 @@ FinFETs are now ubiquitous in 7nm technology and below, powering most modern SoC
 
 ![NFET Id vs Vd Simulation Setup](./Images/nfet_id_vs_vd_characteristics.png)
 ![Id vs Vd Plot](./Images/id_vs_vd.png)
+
+---
+
+#### Understanding the CMOS Inverter and VTC
+
+The CMOS inverter is a fundamental logic cell. Its voltage transfer characteristics (VTC) reveal critical qualities like:
+- **Switching threshold (Vth):** Where Vin = Vout, influenced by the PMOS/NMOS strength ratio.
+- **Noise margins:** The ranges of input voltage where output is guaranteed as '0' or '1', secured by the flatness/steepness of the VTC.
+
+Key performance metrics, such as gain, delay, and current, are all derived from circuit simulation. Examining these over varying fin counts (modern analog to W/L ratio) gives insight into scalability, drive strength, and overall robustness.
 
 ---
 
@@ -72,6 +97,10 @@ FinFETs are now ubiquitous in 7nm technology and below, powering most modern SoC
 
 ---
 
+Drain current (Id) is the main indicator of how much charge the device can drive/sink, directly related to switching speed and logic strength. Higher Id generally means faster and stronger switching, but also more dynamic power use.
+
+---
+
 ### Drain Current
 
 *Shows inverter drain current characteristics during switching:*
@@ -80,11 +109,19 @@ FinFETs are now ubiquitous in 7nm technology and below, powering most modern SoC
 
 ---
 
+Output resistance determines how much the output voltage will droop or rise as external load changes. Lower resistance is preferable for strong logic levels and high fan-out circuits.
+
+---
+
 ### Output Resistance
 
 *Calculated inverter output resistance:*
 
 ![Output Resistance](./Images/Output%20Resistance.png)
+
+---
+
+Transconductance reflects how effectively the input controls output current (gm = ΔId/ΔVgs). Higher gm generally means better gain and faster logic transitions.
 
 ---
 
@@ -104,6 +141,8 @@ FinFETs are now ubiquitous in 7nm technology and below, powering most modern SoC
 
 ---
 
+Switching threshold marks the precise point of state-flip for digital logic, where small input drifts could lead to output switching. Its value and sharpness govern sensitivity and immunity to disturbances.
+
 ### Switching Threshold Voltage
 
 *Waveform used to determine the inverter’s V_th and noise margins:*
@@ -113,6 +152,16 @@ FinFETs are now ubiquitous in 7nm technology and below, powering most modern SoC
 ---
 
 ## Design of BandGap Reference Circuit with Xschem
+
+---
+
+## Bandgap Reference Design and Simulation – Theoretical Insights
+
+A bandgap reference circuit produces a voltage that remains steady across supply and temperature variations.  
+**Bandgap references** are building blocks for analog, power management, and precision digital domains (LDOs, ADC/DACs, PLLs). At deep submicron/FinFET nodes, true BJTs used classically are typically emulated by MOS configurations or modified circuit strategies, still relying on the addition of a “PTAT” (proportional to abs. temperature) and a “CTAT” (complementary to abs. temperature) voltage. Their careful balancing cancels out temperature variations and allows the reference voltage (Vref) to remain flat over process and environment change.
+
+- **PTAT and CTAT sources**: Provide voltages that rise or fall linearly with temperature, synthesized in these circuits by specially composed transistor/resistor arrangements.
+- **Self-Biased Current Mirror (SBCM):** Ensures reliable operation regardless of process or supply swings.
 
 ### BandGap Reference (Architecture Reference)
 
@@ -130,6 +179,7 @@ FinFETs are now ubiquitous in 7nm technology and below, powering most modern SoC
 
 ---
 
+
 ### Vref vs Temperature
 
 *Simulation showing reference voltage stability across temperature sweep:*
@@ -138,6 +188,8 @@ FinFETs are now ubiquitous in 7nm technology and below, powering most modern SoC
 
 ---
 
+PTAT (Proportional to Absolute Temperature) and CTAT (Complementary to Absolute Temperature) voltages provide insight into the underlying temperature dependencies used in the bandgap reference circuit. Each must be carefully sized and summed for overall compensation.
+
 ### PTAT/CTAT Voltages
 
 *Simulated PTAT/CTAT voltage behavior in the bandgap circuit:*
@@ -145,6 +197,9 @@ FinFETs are now ubiquitous in 7nm technology and below, powering most modern SoC
 ![Vctat](./Images/Vctat.png)
 
 ---
+
+**Table Interpretation:**  
+These tables compile the performance extracted from simulation, highlighting how device geometry (number of fins for NMOS/PMOS) and circuit topology affect current, gain, speed, noise margins, and reference voltage flatness. High speed, robust noise margins, and small change in Vref with temperature/supply are key hallmarks of well-designed nanometer circuits.
 
 ## Results
 
